@@ -62,24 +62,35 @@ node* reverserecursive(node* head){
         return head;
 
     node* newhead = reverserecursive(head->next);
+    displayList(head);
+    displayList(newhead);
+
     head->next->next = head;
     head->next= NULL;
 
+    displayList(head);
+    displayList(newhead);
+    cout << endl;
     return newhead;
 } 
 
 int main(){
     node *head = NULL;
     insertAfter(head,1);
-    insertAfter(head,1);
+    insertAfter(head,2);
     insertAfter(head,3);
     insertAfter(head,4);
+    insertAfter(head,5);
     // insertBefore(head,0);
     // insertBefore(head,-1);
+    cout << endl;
     displayList(head);
+    cout << endl << endl;
 
     head = reverserecursive(head);
 
+    cout << endl << endl;
     displayList(head);
+
     return 0;
 }

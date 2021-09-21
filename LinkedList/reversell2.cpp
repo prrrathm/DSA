@@ -47,10 +47,8 @@ node* reversell(node* head){
     return prev;
 }
 
-node* reverseRecurse(node* head){
-    node* curr = head;
-    node* prev = NULL; 
-    node* next; 
+node* reversellRE(node* head){
+    
 }
 
 int main(){
