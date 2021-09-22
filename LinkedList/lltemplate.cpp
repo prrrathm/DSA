@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-template <class T> class Node{
+template <typename T> class Node{
     public :
         T data = 1;
         Node<T> *next;
@@ -25,13 +25,22 @@ template <class T> class Node{
             this->next->display();
         }
         void insertBefore(T value){
-            
+            Node<T> *temp = new Node<T>(this->data);
+            temp->next = this->next;
+            this->data = value;
+            this->next = temp;
+        }
+        bool insertAtKey(int key, T value){
+            if (key == 0){
+                
+            }
         }
 };
 
 int main(){
     Node<int> *head = new Node<int>(0);
     head->insertNext(1);
+    head->insertBefore(2);
     head->display();
     return 0;
 }
