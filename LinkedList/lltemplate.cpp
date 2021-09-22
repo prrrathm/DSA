@@ -3,17 +3,15 @@ using namespace std;
 
 template <class T> class Node{
     public :
-        T data;
+        T data = 1;
         Node<T> *next;
-        // Node(T value){
-        //     data = value;
-        //     next = NULL;
-        // }
+        Node(T value){
+            data = value;
+            next = NULL;
+        }
         void insertNext(T value){
-            // Node<T> *tem = this;
             if (this->next == NULL){
-                this->next = new Node;
-                this->next->data = value;
+                this = new Node<int>(value);
                 return;
             }
             this->next->insertNext(value);
@@ -23,7 +21,9 @@ template <class T> class Node{
 template <class T> void insertNex(Node<T> head, int value);
 
 int main(){
-    Node<int> *head(0);
+    Node<int> *head = new Node<int>(0);
     head->insertNext(1);
+    cout<< head->data;
+    cout<< head->next;
     return 0;
 }
