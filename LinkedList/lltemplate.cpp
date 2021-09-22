@@ -11,19 +11,27 @@ template <class T> class Node{
         }
         void insertNext(T value){
             if (this->next == NULL){
-                this = new Node<int>(value);
+                this->next = new Node<int>(value);
                 return;
             }
             this->next->insertNext(value);
         }
+        void display(){
+            if(this == NULL){
+                cout << "NULL\n";
+                return;
+            }
+            cout << this->data << "->";
+            this->next->display();
+        }
+        void insertBefore(T value){
+            
+        }
 };
-
-template <class T> void insertNex(Node<T> head, int value);
 
 int main(){
     Node<int> *head = new Node<int>(0);
     head->insertNext(1);
-    cout<< head->data;
-    cout<< head->next;
+    head->display();
     return 0;
 }
