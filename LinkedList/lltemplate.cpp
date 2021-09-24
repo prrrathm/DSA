@@ -63,10 +63,10 @@ template <typename T> class Node{
             delete n;
         }
         void deleteTail(){
-            if(this->next == NULL){
-                this->display();
-                this = NULL;
-                delete this;
+            if(this->next->next == NULL){
+                Node<T> *n = this->next->next;
+                this->next = NULL;
+                delete n;
                 return;
             }
             this->next->deleteTail();
