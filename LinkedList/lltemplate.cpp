@@ -13,9 +13,9 @@ template <typename T> class Node{
             this->data = a->data;
             this->next = a->next;
         }
-        Node & operator=(const Node& a){
-            return *this;
-        }
+        // Node & operator=(const Node *a){
+        //     return *this;
+        // }
         
         void insertNext(T value){
             if (this->next == NULL){
