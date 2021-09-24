@@ -9,6 +9,14 @@ template <typename T> class Node{
             data = value;
             next = NULL;
         }
+        Node(const Node *a){
+            this->data = a->data;
+            this->next = a->next;
+        }
+        Node & operator=(const Node& a){
+            return *this;
+        }
+        
         void insertNext(T value){
             if (this->next == NULL){
                 this->next = new Node<int>(value);
@@ -25,22 +33,19 @@ template <typename T> class Node{
             this->next->display();
         }
         void insertBefore(T value){
-            Node<T> *temp = new Node<T>(this->data);
-            temp->next = this->next;
+            // Node<T> *temp = new Node<T>(this->data);
+            // temp->next = this->next;
+            Node<T> *temp = new Node<int>(this);
             this->data = value;
             this->next = temp;
         }
         void insertAt(int key, T value){
             if(key == 1){
-                // cout << key;
-                this->display();
-                Node<T> *temp = new Node<T>(this->data);
-                temp->next = this->next;
+                Node<T> *temp = new Node<int>(this);
                 this->data = value;
                 this->next = temp;
                 return;
             }
-            // cout << key;
             this->next->insertAt(key-1, value);
         }
 };
