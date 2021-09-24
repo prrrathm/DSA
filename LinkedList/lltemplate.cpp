@@ -71,6 +71,16 @@ template <typename T> class Node{
             }
             this->next->deleteTail();
         }
+        void deleteAt(int key){
+            if(key == 1){
+                Node<T> *n = this->next;
+                this->data = this->next->data;
+                this->next = this->next->next;
+                delete n;
+                return;
+            }
+            this->next->deleteAt(key-1);
+        }
 };
 
 int main(){
@@ -82,7 +92,8 @@ int main(){
     head->display();
     // cout << head->search(10);
     // head->deleteHead();
-    head->deleteTail();
+    // head->deleteTail();
+    head->deleteAt(3);
     head->display();
     return 0;
 }
