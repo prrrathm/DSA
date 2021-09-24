@@ -13,10 +13,9 @@ template <typename T> class Node{
             this->data = a->data;
             this->next = a->next;
         }
-        // Node & operator=(const Node *a){
-        //     return *this;
-        // }
-        
+        Node operator=(const Node *a){
+            return a;
+        }
         void insertNext(T value){
             if (this->next == NULL){
                 this->next = new Node<int>(value);
@@ -48,14 +47,42 @@ template <typename T> class Node{
             }
             this->next->insertAt(key-1, value);
         }
+        bool search(T key){
+            if(key == this->data){
+                return true;
+            }
+            if(this->next == NULL){
+                return false;
+            }
+            return this->next->search(key);
+        }
+        void deleteHead(){
+            Node<T> *n = this->next;
+            this->data = this->next->data;
+            this->next = this->next->next;
+            delete n;
+        }
+        void deleteTail(){
+            if(this->next == NULL){
+                this->display();
+                this = NULL;
+                delete this;
+                return;
+            }
+            this->next->deleteTail();
+        }
 };
 
 int main(){
     Node<int> *head = new Node<int>(0);
     head->insertNext(1);
+    head->insertNext(4);
     head->insertBefore(2);
-    head->display();
     head->insertAt(2, 3);
+    head->display();
+    // cout << head->search(10);
+    // head->deleteHead();
+    head->deleteTail();
     head->display();
     return 0;
 }
