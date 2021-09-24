@@ -30,10 +30,18 @@ template <typename T> class Node{
             this->data = value;
             this->next = temp;
         }
-        bool insertAtKey(int key, T value){
-            if (key == 0){
-                
+        void insertAt(int key, T value){
+            if(key == 1){
+                // cout << key;
+                this->display();
+                Node<T> *temp = new Node<T>(this->data);
+                temp->next = this->next;
+                this->data = value;
+                this->next = temp;
+                return;
             }
+            // cout << key;
+            this->next->insertAt(key-1, value);
         }
 };
 
@@ -41,6 +49,8 @@ int main(){
     Node<int> *head = new Node<int>(0);
     head->insertNext(1);
     head->insertBefore(2);
+    head->display();
+    head->insertAt(2, 3);
     head->display();
     return 0;
 }
