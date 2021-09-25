@@ -1,15 +1,19 @@
 #include <iostream>
 using namespace std;
 
-template <class T> class Node{
+template <typename T> class Node{
     public :
         int data;
         Node<T> *next;
         Node<T> *prev;
-        Node(T value) {
-            data = value;
+        static bool headEmpty;
+        Node(){
+            headEmpty = false;
         }
-        
+        Node(T value){
+            data = value;
+            headEmpty = true;
+        }
         void display(){
             if(this == NULL){
                 cout << "NULL\n";
@@ -19,10 +23,11 @@ template <class T> class Node{
             this->next->display();
         }
         void insertNext(T value){
-            if(this == NULL){
-                this = new Node<T>(value);
-            }
             if(this->next == NULL){
+                if(headEmpty == true){
+                    this->data = value;
+                    return;
+                }
                 this->next = new Node<T>(value);
                 return;
             }
@@ -31,7 +36,7 @@ template <class T> class Node{
 };
 
 int main(){
-    Node<int> *head = new Node<int>(0);
+    Node<int> *head = new Node<int>();
     head->insertNext(1);
     head->display();
     return 0;
