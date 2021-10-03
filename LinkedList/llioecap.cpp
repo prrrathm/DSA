@@ -188,6 +188,8 @@ int main(){
     LinkedList<int> list;
     int ch, item, index;
     bool quit = false;
+    list.add(2);
+    cout << list.length();
     do{
         cout<<"===================================="<<endl;
         cout<<"select option :"<<endl;

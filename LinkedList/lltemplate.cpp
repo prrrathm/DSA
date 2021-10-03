@@ -23,9 +23,10 @@ template<typename T>class LinkedList{
         this->head = NULL;
       }
       void display(){
-        while(head != NULL){
-          cout << head->data << "->";
-          head = head->next;
+        Node<T> *temp = head;
+        while(temp != NULL){
+          cout << temp->data << "->";
+          temp = temp->next;
         }
         cout << "NULL\n";
       }
