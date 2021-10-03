@@ -45,16 +45,16 @@ template<typename T>class LinkedList{
         head = new Node<T>(value);
         head->next = temp;
       }
-      int size(){
-        Node<T>* temp = head;
-        int size = 0;
-        while(temp != NULL){
-          size++;
-          cout << size;
-          temp = temp->next;
-        }
-        return size;
+      int length(){
+          int len = 0;
+          Node<T>* temp = head;
+          while(temp != NULL){
+              len++;
+              temp = temp->next;
+          }
+          return len;
       }
+
       void insert(int index, T value){
         if (value > head->size()){
           cout << "Index bigger than size of LinkedList" << '\n';
@@ -70,6 +70,6 @@ int main(){
   A.insertNext(3);
   A.inserBefore(2);
   A.display();
-  cout << A.size() << endl;
+  cout << A.length() << endl;
   return 0;
 }
