@@ -30,7 +30,7 @@ template<typename T>class LinkedList{
         }
         cout << "NULL\n";
       }
-      void insertNext(T value){
+      void append(T value){
           Node<T> *temp = head;
           if(head == NULL){
             head = new Node<T>(value);
@@ -41,7 +41,7 @@ template<typename T>class LinkedList{
           }
           temp->next = new Node<T>(value);
       }
-      void inserBefore(T value){
+      void prepend(T value){
         Node<T>* temp = head;
         head = new Node<T>(value);
         head->next = temp;
@@ -57,20 +57,29 @@ template<typename T>class LinkedList{
       }
 
       void insert(int index, T value){
-        if (value > head->size()){
-          cout << "Index bigger than size of LinkedList" << '\n';
+        if (index > length() || index < 0){
+          cout << "out of bounds!!" << '\n';
           return;
         }
+        Node<T>* temp = head;
+        for(int i=0; i < index-1; i++){
+          temp = temp->next;
+        }
+        // temp->next = NULL;
 
+        Node<T>* n = temp->next;
+        temp->next =  new Node<T>(value);
+        temp->next->next = n;
       }
 };
 
 int main(){
   LinkedList<int> A;
-  A.insertNext(1);
-  A.insertNext(3);
-  A.inserBefore(2);
+  A.append(1);
+  A.append(3);
+  A.prepend(2);
+  A.insert(1,4);
   A.display();
-  cout << A.length() << endl;
+  // cout << A.length() << endl;
   return 0;
 }
