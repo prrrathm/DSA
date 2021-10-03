@@ -1,105 +1,46 @@
 #include <iostream>
 using namespace std;
 
-template <typename T> class Node{
-    public :
-        T data = 1;
-        Node<T> *next;
+template<typename T>class Node{
+  public:
+        T data;
+        Node<T>* next;
+        template<typename U>friend class LinkedList;
+    public:
+        Node(){
+            this->next = NULL;
+        }
         Node(T value){
-            data = value;
-            next = NULL;
+            this->data = value;
+            this->next = NULL;
         }
-        Node(const Node *a){
-            this->data = a->data;
-            this->next = a->next;
-        }
-        Node operator=(const Node *a){
-            return a;
+};
+template<typename T>class LinkedList{
+    private:
+        Node<T>* head;
+    public:
+        LinkedList(){
+            this->head = NULL;
         }
         void insertNext(T value){
-            if(this = NULL){
-                this = new Node<T>(value);
+            if(head == NULL){
+                head = new Node<T>(value);
                 return;
             }
-            if (this->next == NULL){
-                this->next = new Node<int>(value);
-                return;
-            }
-            this->next->insertNext(value);
         }
         void display(){
-            if(this == NULL){
-                cout << "NULL\n";
-                return;
-            }
-            cout << this->data << "->";
-            this->next->display();
-        }
-        void insertBefore(T value){
-            if(this = NULL){
-                this = new Node<T>(value);
-                return;
-            }
-            Node<T> *temp = new Node<int>(this);
-            this->data = value;
-            this->next = temp;
-        }
-        void insertAt(int key, T value){
-            if(key == 1){
-                Node<T> *temp = new Node<int>(this);
-                this->data = value;
-                this->next = temp;
-                return;
-            }
-            this->next->insertAt(key-1, value);
-        }
-        bool search(T key){
-            if(key == this->data){
-                return true;
-            }
-            if(this->next == NULL){
-                return false;
-            }
-            return this->next->search(key);
-        }
-        void deleteHead(){
-            Node<T> *n = this->next;
-            this->data = this->next->data;
-            this->next = this->next->next;
-            delete n;
-        }
-        void deleteTail(){
-            if(this->next->next == NULL){
-                Node<T> *n = this->next->next;
-                this->next = NULL;
-                delete n;
-                return;
-            }
-            this->next->deleteTail();
-        }
-        void deleteAt(int key){
-            if(key == 1){
-                Node<T> *n = this->next;
-                this->data = this->next->data;
-                this->next = this->next->next;
-                delete n;
-                return;
-            }
-            this->next->deleteAt(key-1);
+          while(head != NULL){
+            cout << head->data << "->";
+            head = head->next;
+          }
+            cout << "NULL\n";
         }
 };
 
 int main(){
-    Node<int> *head = new Node<int>(0);
-    head->insertNext(1);
-    head->insertNext(4);
-    head->insertBefore(2);
-    head->insertAt(2, 3);
-    head->display();
-    // cout << head->search(10);
-    // head->deleteHead();
-    // head->deleteTail();
-    head->deleteAt(3);
-    head->display();
-    return 0;
+  LinkedList<int> A;
+  A.insertNext(1);
+  // cout << A.data;
+  A.display();
+  return 0;
 }
