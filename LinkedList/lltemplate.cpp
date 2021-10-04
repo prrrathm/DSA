@@ -94,7 +94,6 @@ template<typename T>class LinkedList{
         temp->next = NULL;
         delete n;
       }
-
       void deleteAt(int index){
         if (index > length() || index < 0){
           cout << "out of bounds!!" << '\n';
@@ -112,6 +111,16 @@ template<typename T>class LinkedList{
         temp->next = n->next;
         delete n;
       }
+      bool search(T value){
+        Node<T>* temp = head;
+        while(temp != NULL){
+          if(temp->data == value){
+            return true;
+          }
+          temp = temp->next;
+        }
+        return false;
+      }
 };
 
 int main(){
@@ -123,6 +132,6 @@ int main(){
   A.display();
   A.deleteAt(3);
   A.display();
-  // cout << A.length() << endl;
+  cout << A.search(2) << endl;
   return 0;
 }
