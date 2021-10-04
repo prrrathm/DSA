@@ -55,7 +55,6 @@ template<typename T>class LinkedList{
           }
           return len;
       }
-
       void insert(int index, T value){
         if (index > length() || index < 0){
           cout << "out of bounds!!" << '\n';
@@ -70,11 +69,23 @@ template<typename T>class LinkedList{
         temp->next->next = n;
       }
       void deleteHead(){
+        if(head == NULL){
+          cout << "Empty List" << '\n';
+          return;
+        }
         Node<T>* temp = head;
         head = head->next;
         delete temp;
       }
       void deleteTail(){
+        if(head == NULL){
+          cout << "Empty List" << '\n';
+          return;
+        }
+        if(head->next == NULL){
+          deleteHead();
+          return;
+        }
         Node<T>* temp = head;
         while(temp->next->next != NULL){
           temp = temp->next;
@@ -88,9 +99,9 @@ template<typename T>class LinkedList{
 int main(){
   LinkedList<int> A;
   A.append(1);
-  A.append(3);
-  A.prepend(2);
-  A.insert(1,4);
+  // A.append(3);
+  // A.prepend(2);
+  // A.insert(1,4);
   A.display();
   A.deleteTail();
   A.display();
