@@ -74,6 +74,15 @@ template<typename T>class LinkedList{
         head = head->next;
         delete temp;
       }
+      void deleteTail(){
+        Node<T>* temp = head;
+        while(temp->next->next != NULL){
+          temp = temp->next;
+        }
+        Node<T>* n = temp->next;
+        temp->next = NULL;
+        delete n;
+      }
 };
 
 int main(){
@@ -82,7 +91,8 @@ int main(){
   A.append(3);
   A.prepend(2);
   A.insert(1,4);
-  A.deleteHead();
+  A.display();
+  A.deleteTail();
   A.display();
   // cout << A.length() << endl;
   return 0;
