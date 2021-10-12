@@ -42,8 +42,26 @@ template<typename A> class circularll{
         temp->next->next = head;
     }
     void insertHead(A value){
-        
+        Node<A>* temp = head;
+        Node<A>* end = head;
+        while(end->next != head){
+            end = end->next;
+        }
+        head = new Node<A>(value);
+        head->next = temp;
+        end->next = head;
     }
+    void deleteHead(){
+        Node<A>* temp = head;
+        Node<A>* end = head;
+        while(end->next != head){
+            end = end->next;
+        }
+        end->next = head->next;
+        head = head->next;
+        delete temp;
+    }
+
 };
 
 int main(){
@@ -51,9 +69,11 @@ int main(){
     cll.insertNext(2);
     cll.insertNext(3);
     cll.insertNext(4);
+    cll.insertHead(1);
     // cout << cll.head->data;
     cll.display();
-
+    cll.deleteHead();
+    cll.display();
     cout << endl;
     return 0;
 }
