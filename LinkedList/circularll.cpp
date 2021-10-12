@@ -18,7 +18,7 @@ template<typename A> class circularll{
     public:
     Node<A>* head;
     circularll(){
-        head = new Node<A>();
+        head = NULL;
     }
     void display(){
         Node<A>* temp = head;
@@ -26,22 +26,20 @@ template<typename A> class circularll{
             cout <<temp->data <<"->";
             temp = temp->next;
         }
-        cout << "-^\n";
+        cout << temp->data << "->...\n";
     }
     void insertNext(A value){
         if(head == NULL){
             head = new Node<A>(value);
             head->next = head;
-            cout<< head->data;
             return;
         }
-        // Node<A>* temp = head;
-        // while(temp->next != head){
-        //     temp = temp->next;
-        // }
-        // cout << temp->data;
-        // temp->next = new Node<A>(value);
-        // temp->next->next = head;
+        Node<A>* temp = head;
+        while(temp->next != head){
+            temp = temp->next;
+        }
+        temp->next = new Node<A>(value);
+        temp->next->next = head;
     }
     void insertHead(A value){
         
@@ -51,6 +49,11 @@ template<typename A> class circularll{
 int main(){
     circularll<int> cll;
     cll.insertNext(2);
-    // cll.display();
+    cll.insertNext(3);
+    cll.insertNext(4);
+    // cout << cll.head->data;
+    cll.display();
+
+    cout << endl;
     return 0;
 }
