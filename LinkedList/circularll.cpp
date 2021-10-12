@@ -61,7 +61,9 @@ template<typename A> class circularll{
         end->next = head;
     }
     void insertAt(int index, A value){
-        // if()
+        if( index>size() || index<0 ){
+            
+        }
     }
     void deleteHead(){
         Node<A>* temp = head;
