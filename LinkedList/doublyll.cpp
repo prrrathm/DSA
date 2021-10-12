@@ -90,6 +90,15 @@ template<typename A> class Doublell {
       head = head->next;
       delete temp;
     }
+    void deleteTail(){
+      Node<A>* temp = head;
+      while(temp->next->next != NULL){
+        temp = temp->next;
+      }
+      Node<A>* temp2 = temp->next;
+      temp->next = NULL;
+      delete temp2;
+    }
 };
 
 int main(){
@@ -100,7 +109,7 @@ int main(){
   dll.prepend(0);
   dll.insertAt(3,4);
   dll.display();
-  dll.deleteHead();
+  dll.deleteTail();
   dll.display();
   cout << endl;
   return 0;
