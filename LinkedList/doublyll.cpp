@@ -33,6 +33,15 @@ template<typename A> class Doublell {
       }
       cout << "NULL" << '\n';
     }
+    int size(){
+      int count=0;
+      Node<A>* temp = head;
+      while(temp != NULL){
+        count++;
+        temp = temp->next;
+      }
+      return count;
+    }
     void insert(A value){
       if (head == NULL){
         head = new Node<A>(value);
@@ -55,7 +64,12 @@ template<typename A> class Doublell {
       head = head->prev;
       head->next = temp;
     }
-    void insert(int index, A value){
+    void insertAt(int index, A value){
+
+      if(head == NULL){
+        head = new Node<int>(value);
+        return;
+      }
 
     }
 };
@@ -68,6 +82,7 @@ int main(){
   dll.prepend(1);
   dll.prepend(0);
   dll.display();
+  cout << dll.size();
   return 0;
 }
 
@@ -79,5 +94,4 @@ int main(){
 5. deletetail
 6. deleteat
 7. search
-
  */
