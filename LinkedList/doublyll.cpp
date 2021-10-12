@@ -33,7 +33,7 @@ template<typename A> class Doublell {
       }
       cout << "NULL" << '\n';
     }
-    void append(A value){
+    void insert(A value){
       if (head == NULL){
         head = new Node<A>(value);
         return;
@@ -63,10 +63,21 @@ template<typename A> class Doublell {
 int main(){
   Doublell<int> dll;
   dll.display();
-  dll.append(2);
-  dll.append(3);
+  dll.insert(2);
+  dll.insert(3);
   dll.prepend(1);
   dll.prepend(0);
   dll.display();
   return 0;
 }
+
+/*
+1. prepend _/
+2. append _/
+3. insertat _/
+4. deletehead
+5. deletetail
+6. deleteat
+7. search
+
+ */
