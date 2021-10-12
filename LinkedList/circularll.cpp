@@ -15,6 +15,7 @@ template<typename A> class Node{
 };
 
 template<typename A> class circularll{
+    public:
     Node<A>* head;
     circularll(){
         head = new Node<A>();
@@ -23,23 +24,33 @@ template<typename A> class circularll{
         Node<A>* temp = head;
         while(temp->next != head){
             cout <<temp->data <<"->";
+            temp = temp->next;
         }
         cout << "-^\n";
     }
     void insertNext(A value){
         if(head == NULL){
             head = new Node<A>(value);
+            head->next = head;
+            cout<< head->data;
+            return;
         }
-        Node<A>* temp = head;
-        while(temp->next != head){
-            temp = temp->next;
-        }
-        temp->next = new Node<A>(value);
-        temp->next->next = head;
+        // Node<A>* temp = head;
+        // while(temp->next != head){
+        //     temp = temp->next;
+        // }
+        // cout << temp->data;
+        // temp->next = new Node<A>(value);
+        // temp->next->next = head;
+    }
+    void insertHead(A value){
+        
     }
 };
 
 int main(){
-    
+    circularll<int> cll;
+    cll.insertNext(2);
+    // cll.display();
     return 0;
 }
