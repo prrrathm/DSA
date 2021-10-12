@@ -90,15 +90,19 @@ template<typename A> class Doublell {
         cout << "Empty List" << '\n';
         return;
       }
-      if(head->next == NULL){
-        deleteHead();
-        return;
-      }
       Node<A>* temp = head;
       head = head->next;
       delete temp;
     }
     void deleteTail(){
+      if(head == NULL){
+        cout << "Empty List" << '\n';
+        return;
+      }
+      if(head->next == NULL){
+        deleteHead();
+        return;
+      }
       Node<A>* temp = head;
       while(temp->next->next != NULL){
         temp = temp->next;
@@ -107,6 +111,34 @@ template<typename A> class Doublell {
       temp->next = NULL;
       delete temp2;
     }
+    void deleteAt(int index){
+      if(head == NULL){
+        cout << "Empty List" << '\n';
+        return;
+      }
+      if(index>size() || index<0){
+        cout << "Invalid Index" << '\n';
+        return;
+      }
+      Node<A>* temp = head;
+      for(int i=1; i<index-1; i++){
+        temp = temp->next;
+      }
+      Node<A>* temp2 = temp->next;
+      temp->next = temp->next->next;
+      delete temp2;
+    }
+    bool search(A key){
+      Node<A>* temp = head;
+      while (temp != NULL) {
+          if(temp->data == key){
+            return true;
+          }
+          temp = temp->next;
+      }
+      return false;
+    }
+
 };
 
 int main(){
@@ -117,9 +149,9 @@ int main(){
   dll.prepend(0);
   dll.insertAt(3,4);
   dll.display();
-  dll.deleteTail();
+  dll.deleteAt(3);
   dll.display();
-  cout << endl;
+  cout << dll.search(20) << endl;
   return 0;
 }
 
