@@ -31,7 +31,7 @@ template<typename A> class Doublell {
     void display(){
       Node<A>* temp = head;
       while(temp != NULL){
-        cout << temp->data <<"->";
+        cout << temp->data <<"<->";
         temp= temp->next;
       }
       cout << "NULL" << '\n';
