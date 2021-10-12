@@ -13,7 +13,6 @@ template<typename A> class Node{
             next = NULL;
         }
 };
-
 template<typename A> class circularll{
     public:
     Node<A>* head;
@@ -92,7 +91,19 @@ template<typename A> class circularll{
         tempend->next = head;
         delete end;
     }
-
+    void deleteAt(int index){
+        if(index>size() || index<0){
+            cout << "Invalid Index";
+            return;
+        }
+        Node<A>* temp = head;
+        for(int i=1; i<index-1;i++){
+            temp = temp->next;
+        }
+        Node<A>* temp2 = temp->next;
+        temp->next = temp->next->next;
+        delete temp2;
+    }
 };
 
 int main(){
@@ -106,6 +117,7 @@ int main(){
     cll.display();
     cll.deleteHead();
     cll.deleteTail();
+    cll.deleteAt(2);
     cll.display();
     cout << cll.size() << endl;
     return 0;
