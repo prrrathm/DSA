@@ -19,6 +19,13 @@ template<typename A> class circularll{
     circularll(){
         head = new Node<A>();
     }
+    void display(){
+        Node<A>* temp = head;
+        while(temp->next != head){
+            cout <<temp->data <<"->";
+        }
+        cout << "-^\n";
+    }
     void insertNext(A value){
         if(head == NULL){
             head = new Node<A>(value);
@@ -33,6 +40,6 @@ template<typename A> class circularll{
 };
 
 int main(){
-
+    
     return 0;
 }
