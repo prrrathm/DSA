@@ -104,6 +104,20 @@ template<typename A> class circularll{
         temp->next = temp->next->next;
         delete temp2;
     }
+    bool search(A key){
+        Node<A>* temp = head;
+        while(temp->next != head){
+            if(temp->data == key){
+                return true;
+            }
+            temp = temp->next;
+        }
+        if(temp->data == key){
+            return true;
+        }
+        return false;
+    }
+
 };
 
 int main(){
@@ -119,6 +133,6 @@ int main(){
     cll.deleteTail();
     cll.deleteAt(2);
     cll.display();
-    cout << cll.size() << endl;
+    cout << cll.search(3) << endl;
     return 0;
 }
