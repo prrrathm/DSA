@@ -86,6 +86,14 @@ template<typename A> class Doublell {
       n->next = tempeNext;
     }
     void deleteHead(){
+      if(head == NULL){
+        cout << "Empty List" << '\n';
+        return;
+      }
+      if(head->next == NULL){
+        deleteHead();
+        return;
+      }
       Node<A>* temp = head;
       head = head->next;
       delete temp;
