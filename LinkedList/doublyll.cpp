@@ -19,7 +19,7 @@ template <typename A> class Node{
     }
 };
 
-template<typename A> class Doublell{
+template<typename A> class Doublell {
   Node<A>* head;
   public:
     Doublell(){
@@ -56,7 +56,7 @@ template<typename A> class Doublell{
       head->next = temp;
     }
     void insert(int index, A value){
-      
+
     }
 };
 
