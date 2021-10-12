@@ -61,9 +61,17 @@ template<typename A> class circularll{
         end->next = head;
     }
     void insertAt(int index, A value){
-        if( index>size() || index<0 ){
-            
+        if(index>size() || index<0){
+            cout << "Invalid Index";
+            return;
         }
+        Node<A>* temp = head;
+        for(int i=1; i<index-1; i++){
+            temp = temp->next;
+        }
+        Node<A>* temp2 = temp->next;
+        temp->next = new Node<A>(value);
+        temp->next->next = temp2;
     }
     void deleteHead(){
         Node<A>* temp = head;
@@ -94,6 +102,7 @@ int main(){
     cll.insertNext(4);
     cll.insertHead(1);
     cll.insertHead(0);
+    cll.insertAt(3,5);
     cll.display();
     cll.deleteHead();
     cll.deleteTail();
