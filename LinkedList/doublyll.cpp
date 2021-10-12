@@ -25,6 +25,9 @@ template<typename A> class Doublell {
     Doublell(){
       head = NULL;
     }
+    Doublell(A value){
+      head = new Node<A>(value);
+    }
     void display(){
       Node<A>* temp = head;
       while(temp != NULL){
@@ -56,7 +59,7 @@ template<typename A> class Doublell {
     }
     void prepend(A value){
       if(head == NULL){
-        head = new Node<int>(value);
+        head = new Node<A>(value);
         return;
       }
       Node<A>* temp = head;
@@ -65,24 +68,41 @@ template<typename A> class Doublell {
       head->next = temp;
     }
     void insertAt(int index, A value){
-
+      if(index>size() || index<0){
+        return;
+      }
       if(head == NULL){
-        head = new Node<int>(value);
+        head = new Node<A>(value);
         return;
       }
 
+      Node<A>* temp = head;
+      for(int i=1; i<index-1; i++){
+        temp = temp->next;
+      }
+      Node<A>* tempeNext = temp->next;
+      Node<A>* n = new Node<A>(value);
+      temp->next = n;
+      n->next = tempeNext;
+    }
+    void deleteHead(){
+      Node<A>* temp = head;
+      head = head->next;
+      delete temp;
     }
 };
 
 int main(){
   Doublell<int> dll;
-  dll.display();
   dll.insert(2);
   dll.insert(3);
   dll.prepend(1);
   dll.prepend(0);
+  dll.insertAt(3,4);
   dll.display();
-  cout << dll.size();
+  dll.deleteHead();
+  dll.display();
+  cout << endl;
   return 0;
 }
 
