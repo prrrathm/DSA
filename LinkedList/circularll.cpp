@@ -29,13 +29,21 @@ template<typename A> class circularll{
         return count;
     }
     void display(){
+        if(head == NULL){
+            cout << "Empty List\n";
+            return;
+        }
         Node<A>* temp = head;
-        while(temp->next != head){
+        while(temp->next != head && size()){
             cout <<temp->data <<"->";
             temp = temp->next;
         }
-        cout << temp->data << "->...\n";
+        if(size()>2 || head!=NULL){
+            cout << temp->data << "->";
+        }        
+        cout << "...\n";
     }
+    
     void insertNext(A value){
         if(head == NULL){
             head = new Node<A>(value);
@@ -50,6 +58,11 @@ template<typename A> class circularll{
         temp->next->next = head;
     }
     void insertHead(A value){
+        if(head == NULL){
+            head = new Node<A>(value);
+            head->next = head;
+            return;
+        }
         Node<A>* temp = head;
         Node<A>* end = head;
         while(end->next != head){
@@ -60,8 +73,12 @@ template<typename A> class circularll{
         end->next = head;
     }
     void insertAt(int index, A value){
-        if(index>size() || index<0){
-            cout << "Invalid Index";
+        if(head == NULL && index==1){
+            head = new Node<A>(value);
+            head->next = head;
+        }
+        if(index>size() || index<1){
+            cout << "Invalid Index\n";
             return;
         }
         Node<A>* temp = head;
@@ -73,16 +90,29 @@ template<typename A> class circularll{
         temp->next->next = temp2;
     }
     void deleteHead(){
+        if(head == NULL){
+            cout <<"Empty List";
+            return;
+        }
+        if(size() == 1) {
+            head == NULL;
+            return;
+        }
         Node<A>* temp = head;
         Node<A>* end = head;
-        while(end->next != head){
+        while(end->next != head) {
+            cout << "->...";
             end = end->next;
         }
-        end->next = head->next;
         head = head->next;
+        end->next = head;
         delete temp;
     }
     void deleteTail(){
+        if(head == NULL){
+            cout <<"Empty List";
+            return;
+        }
         Node<A>* tempend = head;
         while(tempend->next->next != head){
             tempend = tempend->next;
@@ -92,6 +122,10 @@ template<typename A> class circularll{
         delete end;
     }
     void deleteAt(int index){
+        if(head == NULL){
+            cout <<"Empty List";
+            return;
+        }
         if(index>size() || index<0){
             cout << "Invalid Index";
             return;
@@ -122,17 +156,17 @@ template<typename A> class circularll{
 
 int main(){
     circularll<int> cll;
-    cll.insertNext(2);
-    cll.insertNext(3);
-    cll.insertNext(4);
-    cll.insertHead(1);
-    cll.insertHead(0);
-    cll.insertAt(3,5);
+    // cll.insertNext(2);
+    // cll.insertNext(3);
+    // cll.insertNext(4);
+    // cll.insertHead(1);
+    cll.insertHead(4);
+    // cll.insertAt(0,5);
     cll.display();
     cll.deleteHead();
-    cll.deleteTail();
-    cll.deleteAt(2);
+    // cll.deleteTail();
+    // cll.deleteAt(2);
     cll.display();
-    cout << cll.search(3) << endl;
+    cout << endl;
     return 0;
 }
