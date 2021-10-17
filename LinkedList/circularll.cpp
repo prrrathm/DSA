@@ -88,7 +88,6 @@ template<typename A> class circularll{
             if(count == index-1){
                 node->next = temp->next != head ? temp->next : head;
                 temp->next = node;
-                cout<<"new node added at index "<<index<<" !"<<endl;
                 break;
             }
             count++;
@@ -97,7 +96,7 @@ template<typename A> class circularll{
     }
     void deleteHead(){
         if(head == NULL){
-            cout <<"Empty List";
+            cout<<"linked list is empty !"<<endl;
             return;
         }
         if(size() == 1) {
@@ -119,30 +118,41 @@ template<typename A> class circularll{
             cout <<"Empty List";
             return;
         }
-        Node<A>* tempend = head;
-        while(tempend->next->next != head){
-            tempend = tempend->next;
-        }
-        Node<A>* end = tempend->next;
-        tempend->next = head;
-        delete end;
-    }
-    void deleteAt(int index){
-        if(head == NULL){
-            cout <<"Empty List";
-            return;
-        }
-        if(index>size() || index<0){
-            cout << "Invalid Index";
+        if(size() == 1){
+            deleteHead();
             return;
         }
         Node<A>* temp = head;
-        for(int i=1; i<index-1;i++){
+        while(temp->next->next != head)
+            temp = temp->next;
+        
+        Node<A>* lastNode = temp->next;
+        temp->next = head;
+        delete lastNode;
+    }
+    void deleteAt(int index){y
+        if(head == NULL){
+            cout<<"linked list is empty !"<<endl;
+            return;
+        }
+        if(index >= size() || index < 0){
+            cout<<"Index out of bound !"<<endl;
+            return;
+        }
+        if(index == 0){
+            deleteHead();
+            return;
+        }
+        int count = 0;
+        Node<A>* temp = head;
+        while(temp->next != head) {
+            if(count == index - 1) {
+                temp->next = temp->next->next;
+                break;
+            }
+            count++;
             temp = temp->next;
         }
-        Node<A>* temp2 = temp->next;
-        temp->next = temp->next->next;
-        delete temp2;
     }
     bool search(A key){
         Node<A>* temp = head;
@@ -165,13 +175,13 @@ int main(){
     // cll.insertNext(2);
     // cll.insertNext(3);
     // cll.insertNext(4);
-    cll.insertHead(1);
-    // cll.insertHead(0);
-    // cll.insertAt(0,6);
+    // cll.insertHead(1);
+    cll.insertHead(0);
+    cll.insertAt(0,6);
     cll.display();
     // cll.deleteHead();
-    cll.deleteTail();
-    // cll.deleteAt(2);
+    // cll.deleteTail();
+    cll.deleteAt(1);
     cll.display();
     return 0;
 }
