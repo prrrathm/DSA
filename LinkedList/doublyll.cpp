@@ -68,22 +68,43 @@ template<typename A> class Doublell {
       head->next = temp;
     }
     void insertAt(int index, A value){
-      if(index>size() || index<0){
-        return;
-      }
-      if(head == NULL){
-        head = new Node<A>(value);
-        return;
-      }
+      // if(index>size() || index<0){
+      //   return;
+      // }
+      // if(head == NULL){
+      //   head = new Node<A>(value);
+      //   return;
+      // }
 
-      Node<A>* temp = head;
-      for(int i=1; i<index-1; i++){
+      // Node<A>* temp = head;
+      // for(int i=1; i<index-1; i++){
+      //   temp = temp->next;
+      // }
+      // Node<A>* tempeNext = temp->next;
+      // Node<A>* n = new Node<A>(value);
+      // temp->next = n;
+      // n->next = tempeNext;
+      if(index > size() || index < 0){
+        cout<<"index out of bound !"<<endl;
+        return;
+      }
+      Node<T>* node = new Node<T>[1];
+      node->data = item;
+      int count = 0;
+      Node<T>* temp = head;
+      while(temp != NULL && count < index){
+        if(count == index-1){
+          if(temp->next != NULL){
+            node->next = temp->next;
+          }
+          temp->next = node;
+          node->prev = temp;
+          cout<<"new node added at index "<<index<<" !"<<endl;
+          break;
+        }
+        count++;
         temp = temp->next;
       }
-      Node<A>* tempeNext = temp->next;
-      Node<A>* n = new Node<A>(value);
-      temp->next = n;
-      n->next = tempeNext;
     }
     void deleteHead(){
       if(head == NULL){
