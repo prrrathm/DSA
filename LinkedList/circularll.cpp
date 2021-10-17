@@ -30,18 +30,17 @@ template<typename A> class circularll{
     }
     void display(){
         if(head == NULL){
-            cout << "Empty List\n";
+            cout<<"linked list is empty"<<endl;
             return;
         }
+        // cout<<endl<<"----link list items------"<<endl;
         Node<A>* temp = head;
-        while(temp->next != head && size()){
-            cout <<temp->data <<"->";
+        while(true){
+            cout<<temp->data<<"->";
             temp = temp->next;
+            if(temp == head) break;
         }
-        if(size()>2 || head!=NULL){
-            cout << temp->data << "->";
-        }        
-        cout << "...\n";
+        cout<<"..."<<endl;
     }
     
     void insertNext(A value){
@@ -73,21 +72,28 @@ template<typename A> class circularll{
         end->next = head;
     }
     void insertAt(int index, A value){
-        if(head == NULL && index==1){
-            head = new Node<A>(value);
-            head->next = head;
-        }
-        if(index>size() || index<1){
-            cout << "Invalid Index\n";
+        if(index > size() || index < 0){
+            cout<<"index out of bound !"<<endl;
             return;
         }
+        if(index == 0){
+            insertHead(value);
+            return;
+        }
+        Node<A>* node = new Node<A>[1];
+        node->data = value;
+        int count = 0;
         Node<A>* temp = head;
-        for(int i=1; i<index-1; i++){
+        while(count < index){
+            if(count == index-1){
+                node->next = temp->next != head ? temp->next : head;
+                temp->next = node;
+                cout<<"new node added at index "<<index<<" !"<<endl;
+                break;
+            }
+            count++;
             temp = temp->next;
         }
-        Node<A>* temp2 = temp->next;
-        temp->next = new Node<A>(value);
-        temp->next->next = temp2;
     }
     void deleteHead(){
         if(head == NULL){
@@ -100,10 +106,6 @@ template<typename A> class circularll{
         }
         Node<A>* temp = head;
         Node<A>* end = head;
-        while(end->next != head) {
-            cout << "->...";
-            end = end->next;
-        }
         head = head->next;
         end->next = head;
         delete temp;
@@ -159,14 +161,13 @@ int main(){
     // cll.insertNext(2);
     // cll.insertNext(3);
     // cll.insertNext(4);
-    // cll.insertHead(1);
-    cll.insertHead(4);
-    // cll.insertAt(0,5);
+    cll.insertHead(1);
+    cll.insertHead(0);
+    cll.insertAt(0,6);
     cll.display();
-    cll.deleteHead();
+    // cll.deleteHead();
     // cll.deleteTail();
     // cll.deleteAt(2);
     cll.display();
-    cout << endl;
     return 0;
 }
