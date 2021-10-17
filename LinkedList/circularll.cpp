@@ -101,11 +101,15 @@ template<typename A> class circularll{
             return;
         }
         if(size() == 1) {
-            head == NULL;
+            head = NULL;
             return;
         }
+
         Node<A>* temp = head;
         Node<A>* end = head;
+        while(end->next != head) {
+            end = end->next;
+        }
         head = head->next;
         end->next = head;
         delete temp;
@@ -162,11 +166,11 @@ int main(){
     // cll.insertNext(3);
     // cll.insertNext(4);
     cll.insertHead(1);
-    cll.insertHead(0);
-    cll.insertAt(0,6);
+    // cll.insertHead(0);
+    // cll.insertAt(0,6);
     cll.display();
     // cll.deleteHead();
-    // cll.deleteTail();
+    cll.deleteTail();
     // cll.deleteAt(2);
     cll.display();
     return 0;
