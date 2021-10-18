@@ -80,33 +80,19 @@ int main() {
                 int element;
                 cout << "Enter element to push: ";
                 cin >> element;
-                try {
-                    my_stack.push(element);
-                    cout << "Pushed to stack\n";
-                }
-                catch(const std::exception& e) {
-                    std::cerr << e.what() << '\n';
-                }
+                my_stack.push(element);
+                cout << "Pushed to stack\n";
                 break;
-            case 2:
-                try {
-                    int popped_element = my_stack.pop();
-                    cout << "Top most element popped: " << popped_element << endl;                }
-                catch(const std::exception& e) {
-                    std::cerr << e.what() << '\n';
-                }
-                break;
+            case 2: {
+                int popped_element = my_stack.pop();
+                cout << "Top most element popped: " << popped_element << endl;
+                break;}
             case 3:
                 cout << "Stack right now:\n";
                 my_stack.display();
                 break;
             case 4:
-                try {
-                    cout << "Top most element: " << my_stack.get_top_element() << endl;
-                }
-                catch(const std::exception& e) {
-                    std::cerr << e.what() << '\n';
-                }
+                cout << "Top most element: " << my_stack.get_top_element() << endl;
                 break;
             case 5:
                 my_stack.is_empty() ? cout << "Stack is empty right now.\n" : cout << "Stack is not empty right now.\n";
