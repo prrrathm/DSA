@@ -68,22 +68,6 @@ template<typename A> class Doublell {
       head->next = temp;
     }
     void insertAt(int index, A value){
-      // if(index>size() || index<0){
-      //   return;
-      // }
-      // if(head == NULL){
-      //   head = new Node<A>(value);
-      //   return;
-      // }
-
-      // Node<A>* temp = head;
-      // for(int i=1; i<index-1; i++){
-      //   temp = temp->next;
-      // }
-      // Node<A>* tempeNext = temp->next;
-      // Node<A>* n = new Node<A>(value);
-      // temp->next = n;
-      // n->next = tempeNext;
       if(index > size() || index < 0){
         cout<<"index out of bound !"<<endl;
         return;
